@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { getPagination } from '../utils/pagenation';
 
 const BookList = () => {
   const [ books, setBooks ] = useState([]);
+  const [ pages, setPages ] = useState([]);
+
   const getData = async () => {
-    let result = await axios.get('/admin/books');
-    console.log(result.data);
-    setBooks(result.data);
-    return result.data;
+    const result = await axios.get('/admin/books');
+    const { booklist, totalCount, limit, currentPage } = result.data;
+    // console.log(result.data);
+    setBooks(booklist);
+    setPages(
+      getPagination({ currentPage, totalCount, limit })
+    );
   };
 
+  const getPage = async page => {
+    const url = `/admin/books?page=${page}`;
+    const result = await axios.get(url);
+    const { booklist, totalCount, limit, currentPage } = result.data;
+    setBooks(booklist);
+  }
 
   useEffect(() => {
     getData();
@@ -21,6 +33,7 @@ const BookList = () => {
           <table>
             <thead>
               <tr>
+                <th>제품번호</th>
                 <th>분류</th>
                 <th>도서명</th>
                 <th>가격</th>
@@ -29,6 +42,7 @@ const BookList = () => {
             <tbody>
               {books.map(book => (
                 <tr key={book['id']}>
+                  <td>{book['id']}</td>
                   <td>{book['category']}</td>
                   <td>{book['name']}</td>
                   <td>{book['price']}</td>
@@ -38,7 +52,9 @@ const BookList = () => {
           </table>
 
           <div className="pagination">
-            {/* <a href="#" onClick='getPage(p)' v-for="p in pagination" :key="p">{{p + 1}}</a> */}
+            {pages.map(page => (
+              <button key={page} onClick={() => getPage(page)}>{page+1}</button>
+            ))}
           </div>
       </div>      
     </>
