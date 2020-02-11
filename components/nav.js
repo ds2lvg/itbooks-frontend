@@ -2,8 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' },
+  { href: 'https://github.com/ds2lvg?tab=repositories', label: 'GitHub' },
 ].map(link => ({
   ...link,
   key: `nav-link-${link.href}-${link.label}`,
@@ -11,6 +10,9 @@ const links = [
 
 const Nav = () => (
   <nav>
+    <h1 className="logo">
+      <img src='/img/itbooks_logo.png' alt=""/>
+    </h1>
     <ul>
       <li>
         <Link href="/">
@@ -18,14 +20,19 @@ const Nav = () => (
         </Link>
       </li>
       <li>
-        <Link href="/second">
-          <a>Second</a>
+        <Link href="/admin/registry" passHref>
+          <a>도서등록</a>
         </Link>
       </li>
-      <li><a href="/second">Second</a></li>
+      <li>
+        <Link href="/admin/bookList" passHref>
+          <a>도서목록</a>
+        </Link>
+      </li>
+
       {links.map(({ key, href, label }) => (
         <li key={key}>
-          <a href={href}>{label}</a>
+          <a href={href} target="blank">{label}</a>
         </li>
       ))}
     </ul>

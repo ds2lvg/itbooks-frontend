@@ -1,0 +1,9 @@
+img{max-width: 100%;}
+.logo{
+  margin: auto;
+  width: 100px;
+}
+.pagination button{
+  border: none;
+  background: none;
+}

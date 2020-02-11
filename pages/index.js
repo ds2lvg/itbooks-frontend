@@ -1,8 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
-import Registry from '../components/registry'
-import BookList from './../components/bookList';
 
 const Home = () => (
   <div>
@@ -14,16 +12,12 @@ const Home = () => (
     <Nav />
 
     <div className="hero">
-      <h1 className="title">Welcome to Next.js!</h1>
+      <h1 className="title">IT BOOKS</h1>
       <p className="description">
-        To get started, edit <code>pages/index.js</code> and save to reload.
+        I'll make it alone!
       </p>
 
     </div>
-
-    {/* <Registry /> */}
-    <br /><br /><br />
-    <BookList />
 
     <style jsx>{`
       .hero {
