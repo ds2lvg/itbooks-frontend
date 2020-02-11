@@ -29,6 +29,11 @@ const Nav = () => (
           <a>도서목록</a>
         </Link>
       </li>
+      <li>
+        <Link href="/admin/userList" passHref>
+          <a>유저 명단</a>
+        </Link>
+      </li>
 
       {links.map(({ key, href, label }) => (
         <li key={key}>
