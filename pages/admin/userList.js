@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from '../../components/nav';
-import UserList from '../../components/userList';
+import Nav from '../../components/admin/nav';
+import UserList from '../../components/admin/userList';
 const userList = () => {
   return (
     <>

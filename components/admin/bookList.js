@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getPagination } from '../utils/pagenation';
+import { getPagination } from '../../utils/pagenation';
 
 const BookList = () => {
   const [ books, setBooks ] = useState([]);
@@ -8,9 +8,9 @@ const BookList = () => {
 
   const getData = async () => {
     const result = await axios.get('/admin/books');
-    const { booklist, totalCount, limit, currentPage } = result.data;
+    const { bookList, totalCount, limit, currentPage } = result.data;
     // console.log(result.data);
-    setBooks(booklist);
+    setBooks(bookList);
     setPages(
       getPagination({ currentPage, totalCount, limit })
     );
@@ -19,8 +19,8 @@ const BookList = () => {
   const getPage = async page => {
     const url = `/admin/books?page=${page}`;
     const result = await axios.get(url);
-    const { booklist, totalCount, limit, currentPage } = result.data;
-    setBooks(booklist);
+    const { bookList, totalCount, limit, currentPage } = result.data;
+    setBooks(bookList);
   }
 
   useEffect(() => {

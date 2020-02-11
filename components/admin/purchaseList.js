@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getPagination } from '../utils/pagenation';
-import useInput from './useInput';
-import valid from '../utils/validator';
+import { getPagination } from '../../utils/pagenation';
 
-const Purchase = () => {
+const PurchaseList = () => {
   const [ purchases, setPurchases ] = useState([]);
   const [ pages, setPages ] = useState([]);
 
@@ -31,7 +29,7 @@ const Purchase = () => {
   }, []);
 
   return (
-    <div class="container">
+    <div className="container">
       <table>
         <thead>
           <tr>
@@ -62,4 +60,4 @@ const Purchase = () => {
   );
 };
 
-export default Purchase;
+export default PurchaseList;

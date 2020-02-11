@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from '../../components/nav';
-import Registry from '../../components/registry';
+import Nav from '../../components/admin/nav';
+import Registry from '../../components/admin/registry';
 
 const registry = () => {
   return (

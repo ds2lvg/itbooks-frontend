@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import useInput from './useInput';
-import valid from '../utils/validator';
+import useInput from '../useInput';
+import valid from '../../utils/validator';
 
 axios.defaults.baseURL = 'http://localhost:3333/api/v1.0';
 

@@ -35,7 +35,7 @@ const Nav = () => (
         </Link>
       </li>
       <li>
-        <Link href="/admin/purchase" passHref>
+        <Link href="/admin/purchaseList" passHref>
           <a>구매 목록</a>
         </Link>
       </li>

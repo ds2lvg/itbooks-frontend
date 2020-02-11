@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getPagination } from '../utils/pagenation';
+import { getPagination } from '../../utils/pagenation';
 
 const userList = () => {
   const [ users, setUsers ] = useState([]);
