@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
 import Registry from '../components/registry'
+import BookList from './../components/bookList';
 
 const Home = () => (
   <div>
@@ -20,7 +21,9 @@ const Home = () => (
 
     </div>
 
-    <Registry />
+    {/* <Registry /> */}
+    <br /><br /><br />
+    <BookList />
 
     <style jsx>{`
       .hero {
