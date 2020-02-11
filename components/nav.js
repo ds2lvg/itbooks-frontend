@@ -34,6 +34,11 @@ const Nav = () => (
           <a>유저 명단</a>
         </Link>
       </li>
+      <li>
+        <Link href="/admin/purchase" passHref>
+          <a>구매 목록</a>
+        </Link>
+      </li>
 
       {links.map(({ key, href, label }) => (
         <li key={key}>
