@@ -46,6 +46,7 @@ a{
 }
 
 img{max-width: 100%;}
+
 .logo{
   margin: auto;
   width: 100px;
@@ -53,4 +54,9 @@ img{max-width: 100%;}
 .pagination button{
   border: none;
   background: none;
+}
+
+.read_only{
+	border: none;
+	outline: none;
 }

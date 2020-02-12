@@ -17,13 +17,13 @@ const Nav = () => (
         </Link>
       </li>
       <li>
-        <Link href="/member/login" passHref>
-          <a>로그인</a>
+        <Link href="/member/signup" passHref>
+          <a>회원가입</a>
         </Link>
       </li>
       <li>
-        <Link href="/member/join" passHref>
-          <a>회원가입</a>
+        <Link href="/member/signin" passHref>
+          <a>로그인</a>
         </Link>
       </li>
       <li>
