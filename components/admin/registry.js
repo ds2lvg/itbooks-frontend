@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import useInput from '../useInput';
+import axios from '../../utils/axios-config';
 import valid from '../../utils/validator';
-
-axios.defaults.baseURL = 'http://localhost:3333/api/v1.0';
+import useInput from '../hooks/useInput';
 
 const Registry = () => {
   const categories = ['프로그래밍', '소설']; // 나중에 DB에서 받아오는걸로 변경

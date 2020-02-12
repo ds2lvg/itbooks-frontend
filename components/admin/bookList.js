@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../utils/axios-config';
 import { getPagination } from '../../utils/pagenation';
+
 
 const BookList = () => {
   const [ books, setBooks ] = useState([]);

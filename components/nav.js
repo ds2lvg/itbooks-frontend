@@ -1,52 +1,36 @@
 import React from 'react'
 import Link from 'next/link'
 
-const links = [
-  { href: 'https://github.com/ds2lvg?tab=repositories', label: 'GitHub' },
-].map(link => ({
-  ...link,
-  key: `nav-link-${link.href}-${link.label}`,
-}))
-
 const Nav = () => (
   <nav>
     <h1 className="logo">
       <Link href="/">
-        <a><img src='/img/itbooks_logo.png' alt=""/></a>
+        <a>
+          <img src='/img/itbooks_logo.png' alt=""/>
+        </a>
       </Link>
     </h1>
     <ul>
       <li>
-        <Link href="/admin">
-          <a>Home</a>
+        <Link href="/book/list" passHref>
+          <a>도서</a>
         </Link>
       </li>
       <li>
-        <Link href="/admin/registry" passHref>
-          <a>도서등록</a>
+        <Link href="/member/login" passHref>
+          <a>로그인</a>
         </Link>
       </li>
       <li>
-        <Link href="/admin/bookList" passHref>
-          <a>도서목록</a>
+        <Link href="/member/join" passHref>
+          <a>회원가입</a>
         </Link>
       </li>
       <li>
-        <Link href="/admin/userList" passHref>
-          <a>유저 명단</a>
+        <Link href="/member/mypage" passHref>
+          <a>마이페이지</a>
         </Link>
       </li>
-      <li>
-        <Link href="/admin/purchaseList" passHref>
-          <a>구매 목록</a>
-        </Link>
-      </li>
-
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href} target="blank">{label}</a>
-        </li>
-      ))}
     </ul>
 
     <style jsx>{`
