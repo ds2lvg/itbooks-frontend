@@ -16,17 +16,11 @@ const Signin = () => {
 
     if (data.status == 200) {
       alert('로그인에 성공하였습니다.');
-      console.log('signin', data);
-
-      const checkSession = async () => {
-        let data = await axios.get('/users/session-check');
-        console.log('check', data);
-        return data;
-      }
-
-      checkSession();
-
-      // Router.push('/');
+      console.log('signin', data.data["token"]);
+      localStorage.removeItem('token');
+      localStorage.setItem('token', data.data["token"])
+      
+      Router.push('/');
     } else if (data.status == 204) {
       alert('잘못된 정보입니다.');
     }

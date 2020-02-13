@@ -5,26 +5,31 @@ import axios from './../utils/axios-config';
 const Nav = () => {
   const [isLogin, setIsLogin] = useState(false);
 
-  const checkSession = async () => {
+  const checkToken = async () => {
     // let data = await axios.get('/users/session-check');
-    
-    let data = await axios({
-      method: "get",
-      url: "/users/session-check",
-    })
-    
-    console.log('check', data);
-    return data;
-  }
-
-  useEffect(() => {
-    let data = checkSession();
-
-    if (data.data) {
+    const token = localStorage.getItem('token');
+    if(token !== null) {
+      let data = await axios({
+        method: "get",
+        url: "/users/tokken-check",
+        headers: { Authorization: token },
+      })
+      
+      console.log('checkToken ', data.isLogin);
       setIsLogin(true);
     } else {
       setIsLogin(false);
     }
+  }
+  
+  const handleSignout = () => {
+    setIsLogin(false);
+    localStorage.removeItem('token');
+    alert("로그아웃 되었습니다.");
+  }
+
+  useEffect(() => {
+    checkToken();
   }, []);
 
   return (
@@ -55,20 +60,18 @@ const Nav = () => {
                 </Link>
               )
               : (
-                <Link href="/member/signout" passHref>
-                  <a>로그아웃</a>
-                </Link>
+                <a onClick={handleSignout}>로그아웃</a>
               )}
             </li>
             <li>
             {!isLogin 
               ? (
-                <Link href="/member/mypage" passHref>
+                <Link href="/member/signin" passHref>
                   <a>마이페이지</a>
                 </Link>
               )
               : (
-                <Link href="/member/signin" passHref>
+                <Link href="/member/mypage" passHref>
                   <a>마이페이지</a>
                 </Link>
               )}
