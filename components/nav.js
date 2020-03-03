@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import axios from './../utils/axios-config';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOG_IN_CHECK_REQUEST, LOG_OUT_REQUEST } from '../modules/user';
 
 const Nav = () => {
-  const [isLogin, setIsLogin] = useState(false);
-
+  // 로그인 상태 체크 로직 전역 부분으로 옮길 것
+  const { isLogin, token } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  
   const checkToken = async () => {
     // let data = await axios.get('/users/session-check');
     const token = localStorage.getItem('token');
     if(token !== null) {
-      let data = await axios({
-        method: "get",
-        url: "/users/tokken-check",
-        headers: { Authorization: token },
-      })
-      
-      console.log('checkToken ', data.isLogin);
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
+      dispatch({
+        type: LOG_IN_CHECK_REQUEST,
+        data: token
+      });
     }
   }
   
   const handleSignout = () => {
-    setIsLogin(false);
     localStorage.removeItem('token');
+    dispatch({
+      type: LOG_OUT_REQUEST,
+    });
     alert("로그아웃 되었습니다.");
   }
 
   useEffect(() => {
     checkToken();
-  }, []);
+  }, [isLogin]);
 
   return (
     <>
