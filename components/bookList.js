@@ -11,7 +11,7 @@ const BookList = () => {
   const getData = async () => {
     const result = await axios.get(`/books?category=${category}`);
     const { bookList, totalCount, limit, currentPage } = result.data;
-    console.log(result.data);
+    // console.log(result.data);
     setBooks(bookList);
     setPages(
       getPagination({ currentPage, totalCount, limit })
@@ -47,7 +47,7 @@ const BookList = () => {
         <ul className="book-main-list">
           {books.map(book => (
             <li key={book['id']}>
-              <Link href={"/book/"+book['id']} passHref>
+              <Link as={`/book/${book['id']}`} href={`/book/detail?bookId=${book['id']}`} passHref>
                 <a>
                   <div className="thumnail">
                     <img src={"http://localhost:3333/uploads/"+book['img']} alt=""/>
