@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from '../../utils/axios-config';
 import valid from '../../utils/validator';
 import useInput from '../hooks/useInput';
+import Router from 'next/router'
 
 const Registry = () => {
   const categories = ['프로그래밍', '소설']; // 나중에 DB에서 받아오는걸로 변경
@@ -31,7 +32,7 @@ const Registry = () => {
         });
         console.log(data);
         alert('제품이 정상적으로 등록되었습니다.');
-        // $nuxt.$router.replace({ path: '/admin' })
+        Router.replace('/admin'); // 관리자 메인으로 이동
       } catch (e) {
         console.error(e);
       }

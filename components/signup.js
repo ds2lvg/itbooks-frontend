@@ -17,11 +17,10 @@ const Signup = () => {
         balance: balance.value,
       });
       console.log(data)
-      if (data.status == 200) {
+      if (data.status == 400) {
         alert('해당 아이디는 이미 존재합니다.');
       } else if (data.status == 201) {
         alert('회원 가입이 완료되었씁니다.');
-        // $nuxt.$router.replace({ path: '/signin' })
       } else {
         console.log(data)
       }

@@ -36,7 +36,7 @@ const Signin = () => {
       
       Router.push('/');
     } else {
-    // } else if (data.status == 204) {
+    // } else if (data.status == 400) {
       // alert('잘못된 정보입니다.');
     }
   }, [isLogin]);
