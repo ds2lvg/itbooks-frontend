@@ -26,14 +26,16 @@ const Signin = () => {
   }
 
   useEffect(() => {
-    console.log('dispatch', isLogin);
+    // console.log('dispatch', isLogin);
     if (isLogin) {
     // if (data.status == 200) {
       alert('로그인에 성공하였습니다.');
-      console.log('signin', token);
-      localStorage.removeItem('token');
-      localStorage.setItem('token', token)
-      
+      localStorage.clear();
+      localStorage.setItem('token', token);
+      const expireTime = (+ new Date()) + (1000 * 60 * 60 * 1); // Timestamp로 저장
+
+      localStorage.setItem('time', expireTime);
+      console.log('signin', localStorage);
       Router.push('/');
     } else {
     // } else if (data.status == 400) {

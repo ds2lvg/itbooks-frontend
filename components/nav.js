@@ -3,6 +3,7 @@ import Link from 'next/link'
 import axios from './../utils/axios-config';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOG_IN_CHECK_REQUEST, LOG_OUT_REQUEST } from '../modules/user';
+import Router from 'next/router';
 
 const Nav = () => {
   // 로그인 상태 체크 로직 전역 부분으로 옮길 것
@@ -12,7 +13,17 @@ const Nav = () => {
   const checkToken = async () => {
     // let data = await axios.get('/users/session-check');
     const token = localStorage.getItem('token');
-    if(token !== null) {
+    const expireTime = localStorage.getItem('time');
+    const currentTime = + new Date();
+    
+    // 로그인 유효시간 경과시
+    if(currentTime >= parseInt(expireTime)){
+      handleSignout("로그인 시간이 만료되었습니다. 다시 로그인 해주세요.");
+      return Router.push('/member/signin');
+    }
+
+    // 현재 로그인 상태인지 체크
+    if(token) {
       dispatch({
         type: LOG_IN_CHECK_REQUEST,
         data: token
@@ -20,12 +31,16 @@ const Nav = () => {
     }
   }
   
-  const handleSignout = () => {
-    localStorage.removeItem('token');
+  const handleSignout = (msg) => {
+    localStorage.clear();
     dispatch({
       type: LOG_OUT_REQUEST,
     });
-    alert("로그아웃 되었습니다.");
+    if(!msg) {
+      alert("로그아웃 되었습니다.");
+    } else {
+      alert(msg);
+    }
   }
 
   useEffect(() => {
