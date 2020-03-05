@@ -12,7 +12,7 @@ const Nav = () => {
   
   const checkToken = async () => {
     // let data = await axios.get('/users/session-check');
-    const token = localStorage.getItem('token');
+    const localToken = localStorage.getItem('token');
     const expireTime = localStorage.getItem('time');
     const currentTime = + new Date();
     
@@ -23,10 +23,10 @@ const Nav = () => {
     }
 
     // 현재 로그인 상태인지 체크
-    if(token) {
+    if(!isLogin) {
       dispatch({
         type: LOG_IN_CHECK_REQUEST,
-        data: token
+        data: localToken
       });
     }
   }
@@ -36,10 +36,10 @@ const Nav = () => {
     dispatch({
       type: LOG_OUT_REQUEST,
     });
-    if(!msg) {
-      alert("로그아웃 되었습니다.");
-    } else {
+    if(typeof msg === "string") {
       alert(msg);
+    } else {
+      alert("로그아웃 되었습니다.");
     }
   }
 

@@ -25,6 +25,7 @@ function logInAPI(loginData) {
 function* logIn(action) {
   try {
     const result = yield call(logInAPI, action.data); // call: 함수 동기적 호출
+    console.log('logIn: ', result)
     yield put({ // put: 액션 dispatch
       type: LOG_IN_SUCCESS,
       data: result.data,
@@ -86,8 +87,10 @@ export function* userSaga() {
 }
 
 export const initialState = {
-  isLogin: false,
-  token: '',
+  isLogin: false,    // 로그인 상태
+  token: '',         // 로그인 토큰
+  userId: '',        // 사용자 아이디
+  loginFailure: false, // 로그인 실패
 }
 
 export default function userReducer(state=initialState, action) {
@@ -95,18 +98,22 @@ export default function userReducer(state=initialState, action) {
     case LOG_IN_REQUEST:
       return {
         ...state,
+        loginFailure: false,
       };
     case LOG_IN_SUCCESS:
       return {
         ...state,
         isLogin: true,
         token: action.data.token,
+        userId: action.data.userId,
       };
     case LOG_IN_FAILURE:
       return {
         ...state,
         isLogin: false,
         token: '',
+        userId: '',
+        loginFailure: true,
       }
     case SIGN_UP_REQUEST:
       return {
@@ -129,6 +136,7 @@ export default function userReducer(state=initialState, action) {
         ...state,
         isLogin: false,
         token: '',
+        userId: '',
       }
     case LOG_OUT_FAILURE:
       return {
@@ -137,16 +145,19 @@ export default function userReducer(state=initialState, action) {
     case LOG_IN_CHECK_REQUEST:
       return {
         ...state,
+        loginFailure: false,
       }
     case LOG_IN_CHECK_SUCCESS:
       return {
         ...state,
         isLogin: true,
+        userId: action.data.userId,
       }
     case LOG_IN_CHECK_FAILURE:
       return {
         ...state,
         isLogin: false,
+        userId: '',
       }
     default:
       return state;

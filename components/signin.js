@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import useInput from './hooks/useInput';
 import Router from 'next/router';
 import axios from '../utils/axios-config';
@@ -8,24 +8,23 @@ import { LOG_IN_REQUEST } from '../modules/user';
 const Signin = () => {
   const uid = useInput('');
   const password = useInput('');
-  const { isLogin, token } = useSelector(state => state.user);
+  const { isLogin, token, loginFailure } = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const refMount = useRef(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    
-    // let data = await axios.post('/users/signin', data = {
-    //   uid: uid.value, password: password.value,
-    // });
+
     dispatch({
       type: LOG_IN_REQUEST,
       data: {
         uid: uid.value, password: password.value,
       }
     });
-  }
+  }, [uid.value, password.value]);
 
   useEffect(() => {
+    if(!refMount.current) refMount.current=true;
     // console.log('dispatch', isLogin);
     if (isLogin) {
     // if (data.status == 200) {
@@ -37,11 +36,12 @@ const Signin = () => {
       localStorage.setItem('time', expireTime);
       console.log('signin', localStorage);
       Router.push('/');
-    } else {
-    // } else if (data.status == 400) {
-      // alert('잘못된 정보입니다.');
+    } 
+
+    if(loginFailure) {
+      alert('아이디 혹은 비밀번호가 다릅니다.');
     }
-  }, [isLogin]);
+  }, [isLogin, loginFailure]);
 
   return (
     <div className="container">
