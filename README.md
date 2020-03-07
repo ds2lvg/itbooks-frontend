@@ -1,4 +1,5 @@
 - 프론트 개발서버:  yarn dev
+- 동적라우팅 지원 개발서버:  yarn ssr
 
 # Technologies Use
 ## frontend
