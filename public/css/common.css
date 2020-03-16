@@ -49,8 +49,15 @@ img{max-width: 100%;}
 
 .logo{
   margin: auto;
-  width: 100px;
+	width: 100px;
+	
 }
+
+.pagination{
+	margin: 50px auto 50px;
+	width: 300px;
+}
+
 .pagination button{
   border: none;
   background: none;
