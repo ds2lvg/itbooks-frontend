@@ -55,12 +55,19 @@ img{max-width: 100%;}
 
 .pagination{
 	margin: 50px auto 50px;
-	width: 300px;
+	width: 360px;
 }
 
 .pagination button{
   border: none;
-  background: none;
+	background: none;
+	padding: 0;
+	margin: 2px;
+	width: 15px;
+}
+
+.pagination button.noShow{
+	visibility: hidden;
 }
 
 .read_only{

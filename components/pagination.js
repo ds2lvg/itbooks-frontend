@@ -21,13 +21,13 @@ const Pagination = ({pageInfo, pages, pageNum, getPage, changePages}) => {
     <div className="pagination">
     {
       pageNum+1 > 1 
-      ? <button onClick={() => handlePages(0)}>처음</button>
-      : ''
+      ? <button onClick={() => handlePages(0)}>&lt;&lt;</button>
+      : <button disabled className="noShow"></button>
     }
     {
       pageNum+1 > 1 
-      ? <button onClick={() => handlePages(pageInfo.startPage-11)}>이전</button>
-      : ''
+      ? <button onClick={() => handlePages(pageInfo.startPage-11)}>&lt;</button>
+      : <button disabled className="noShow"></button>
     }
     {
       pages.map(page => (
@@ -38,13 +38,13 @@ const Pagination = ({pageInfo, pages, pageNum, getPage, changePages}) => {
     }
     {
       pages[pages.length-1] + 1 >= pageInfo.totalPage
-      ? ''
-      : <button onClick={() => handlePages(pageInfo.endPage)}>다음</button>
+      ? <button disabled className="noShow"></button>
+      : <button onClick={() => handlePages(pageInfo.endPage)}>&gt;</button>
     }
     {
       pages[pages.length-1] + 1 >= pageInfo.totalPage
-      ? ''
-      : <button onClick={() => handlePages(pageInfo.totalPage-(pageInfo.totalPage%10))}>마지막</button>
+      ? <button disabled className="noShow"></button>
+      : <button onClick={() => handlePages(pageInfo.totalPage-(pageInfo.totalPage%10))}>&gt;&gt;</button>
     }
     </div>
   );
